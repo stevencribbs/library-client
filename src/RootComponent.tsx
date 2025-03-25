@@ -4,7 +4,7 @@ import HomePage from './pages/HomePage'
 import NotFoundPage from './pages/NotFoundPage'
 import { ROUTES } from './resources/routes-constants'
 import './styles/main.sass'
-import BooksPage from './pages/BooksPage'
+import BooksPage from './domains/books/BooksPage'
 
 const RootComponent: React.FC = () => {
     return (
