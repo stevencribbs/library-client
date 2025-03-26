@@ -1,19 +1,19 @@
 import React from 'react'
 // import { nanoid } from '@reduxjs/toolkit'
 // import { useAppDispatch } from '~/store/store'
-import { Book } from './bookTypes'
-import { bookAdded } from './booksSlice'
+import { Quote } from './quoteTypes'
+import { quoteAdded } from './quoteActions'
 import { useDispatch } from 'react-redux'
 
 // TS types for the input fields
 // See: https://epicreact.dev/how-to-type-a-react-form-on-submit-handler/
-interface AddBookFormFields extends HTMLFormControlsCollection {
-  bookTitle: HTMLInputElement
+interface AddQuoteFormFields extends HTMLFormControlsCollection {
+  quoteText: HTMLInputElement
   author?: HTMLInputElement
-  summary?: HTMLTextAreaElement
+  tags?: HTMLInputElement
 }
-interface AddBookFormElements extends HTMLFormElement {
-  readonly elements: AddBookFormFields
+interface AddQuoteFormElements extends HTMLFormElement {
+  readonly elements: AddQuoteFormFields
 }
 
 function getRandomInt(min: number, max: number): number {
@@ -22,46 +22,46 @@ function getRandomInt(min: number, max: number): number {
   return Math.floor(Math.random() * (maxFloored - minCeiled) + minCeiled); // The maximum is exclusive and the minimum is inclusive
 }
 
-export const AddBookForm = () => {
+export const AddQuoteForm = () => {
   const dispatch = useDispatch();
-  const handleSubmit = (e: React.FormEvent<AddBookFormElements>) => {
+  const handleSubmit = (e: React.FormEvent<AddQuoteFormElements>) => {
     // Prevent server submission
     e.preventDefault()
 
     const { elements } = e.currentTarget
-    const bookTitle = elements.bookTitle.value
+    const quoteText = elements.quoteText.value
     const author = elements.author?.value
-    const summary = elements.summary?.value
+    const tags = elements.tags?.value
 
-    console.log('Values: ', { bookTitle, author, summary })
+    console.log('Values: ', { quoteText, author, tags })
 
     // Create the post object and dispatch the `postAdded` action
-    const newBook: Book = {
+    const newQuote: Quote = {
       id: getRandomInt(1, 1000),
-      title: bookTitle,
+      text: quoteText,
       author,
-      summary,
+      tags,
     }
-    dispatch(bookAdded(newBook));
+    dispatch(quoteAdded(newQuote));
 
     e.currentTarget.reset()
   }
 
   return (
     <section>
-      <h2>Add a New Book</h2>
+      <h2>Add a New Quote</h2>
       <form onSubmit={handleSubmit}>
-        <label htmlFor="bookTitle">Book Title:</label>
-        <input type="text" id="bookTitle" defaultValue="" required />
-        <label htmlFor="author">Book Author:</label>
+        <label htmlFor="quoteText">Quote Title:</label>
+        <input type="text" id="quoteText" defaultValue="" required />
+        <label htmlFor="author">Quote Author:</label>
         <input type="text" id="author" defaultValue="" />
-        <label htmlFor="summary">Book Summary:</label>
-        <textarea
-          id="summary"
-          name="summary"
+        <label htmlFor="tags">Quote Tags:</label>
+        <input
+          id="tags"
+          name="tags"
           defaultValue=""
         />
-        <button>Save Book</button>
+        <button>Save Quote</button>
       </form>
     </section>
   )

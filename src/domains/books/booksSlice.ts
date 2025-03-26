@@ -24,10 +24,25 @@ const booksSlice = createSlice({
     reducers: {
         // Declare a "case reducer" named `bookAdded`.
         // The type of `action.payload` will be a `Book` object.
-        bookAdded(state, action: PayloadAction<Book>) {
-            // "Mutate" the existing state array, which is
-            // safe to do here because `createSlice` uses Immer inside.
-            state.push(action.payload)
+        // bookAdded(state, action: PayloadAction<Book>) {
+        //     // "Mutate" the existing state array, which is
+        //     // safe to do here because `createSlice` uses Immer inside.
+        //     state.push(action.payload)
+        // }
+        bookAdded: {
+            reducer: (state, action: PayloadAction<Book>) => {
+                state.push(action.payload)
+            },
+            prepare: (book: Book) => {
+                return {
+                    payload: {
+                        id: book.id,
+                        title: book.title,
+                        author: book.author,
+                        summary: book.summary
+                    }
+                }
+            }
         }
     }
 })
