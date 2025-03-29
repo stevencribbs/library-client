@@ -1,9 +1,23 @@
 import React from 'react'
-import { useAppSelector } from '~/store/store'
 import { AddBookForm } from './AddBookForm';
+import { fetchAllBooks, selectAllBooks, selectBooksStatus } from './booksSlice';
+import { useAppDispatch, useAppSelector } from '~/app/hooks';
 
 const BooksPage: React.FC = () => {
-    const books = useAppSelector((state) => state.books);
+    const dispatch = useAppDispatch();
+    const books = useAppSelector(selectAllBooks);
+    const booksStatus = useAppSelector(selectBooksStatus);
+
+    React.useEffect(() => {
+    if (booksStatus === 'idle') {
+        try{
+            dispatch(fetchAllBooks())
+        } catch (e) {
+            console.error(e)
+        }
+    }
+  }, [booksStatus, dispatch])
+
     return (
         <div style={{ position: 'relative', width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}>
             <h1 style={{ fontSize: '4em' }}>Books</h1>

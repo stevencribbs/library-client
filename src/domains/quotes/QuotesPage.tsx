@@ -1,6 +1,6 @@
 import React from 'react'
-import { useAppSelector } from '~/store/store'
 import { AddQuoteForm } from './AddQuoteForm';
+import { useAppSelector } from '~/app/hooks';
 
 const QuotesPage: React.FC = () => {
     const quotes = useAppSelector((state) => state.quotesData.quotes);

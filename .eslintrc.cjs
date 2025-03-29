@@ -6,14 +6,14 @@ module.exports = {
         ecmaVersion: 2018,
         sourceType: 'module',
         ecmaFeatures: {
-            jsx: true
-        }
+            jsx: true,
+        },
     },
     env: {
         browser: true,
         node: true,
         es6: true,
-        jest: true
+        jest: true,
     },
     rules: {
         '@typescript-eslint/naming-convention': [
@@ -21,39 +21,39 @@ module.exports = {
             {
                 selector: 'parameter',
                 format: ['camelCase'],
-                trailingUnderscore: 'allowSingleOrDouble'
+                trailingUnderscore: 'allowSingleOrDouble',
             },
             {
                 selector: 'class',
-                format: ['PascalCase']
+                format: ['PascalCase'],
             },
             {
                 selector: 'enum',
-                format: ['PascalCase', 'UPPER_CASE']
+                format: ['PascalCase', 'UPPER_CASE'],
             },
             {
                 selector: 'enumMember',
-                format: ['PascalCase', 'UPPER_CASE']
+                format: ['PascalCase', 'UPPER_CASE'],
             },
             {
                 selector: 'interface',
-                format: ['PascalCase']
+                format: ['PascalCase'],
             },
             {
                 selector: 'typeAlias',
-                format: ['PascalCase']
+                format: ['PascalCase'],
             },
             {
                 selector: 'typeParameter',
-                format: ['PascalCase']
-            }
+                format: ['PascalCase'],
+            },
         ],
         'react-hooks/rules-of-hooks': 'warn',
-        'react-hooks/exhaustive-deps': 'warn'
+        'react-hooks/exhaustive-deps': 'warn',
     },
     settings: {
         react: {
-            version: 'detect'
-        }
-    }
-}
+            version: 'detect',
+        },
+    },
+};
