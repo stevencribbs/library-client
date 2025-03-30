@@ -1,28 +1,9 @@
-<h1 align="center">New React App</h1>
+<h1 align="center">Personal Library</h1>
+This project is centered around the conept of allowing a user to browse, add, and remove collected data such as quotes, verses, books, recipes, etc. It is designed to work as the client view for data retrieved from, and stored in, the library-server project.
 
-# Usage
+<br />
 
-To clone and use this template type the following commands:
-
-```sh
-npx degit chrisuser/vite-complete-react-app my-app
-```
-
-```sh
-cd my-app
-```
-
-Then, based on your package manager:
-
-## npm
-
-```sh
-npm install
-```
-
-```sh
-npm run dev
-```
+# Start Up
 
 ## yarn
 
@@ -36,12 +17,7 @@ yarn dev
 
 <br />
 
-> [!TIP]
-> Remember to update the project name inside the `package.json` file.
-
-<br />
-
-## ⚗️ Technologies list
+## ⚗️ Initial Technologies list
 
 -   [TypeScript](https://www.typescriptlang.org/)
 -   [Sass](https://sass-lang.com/)
@@ -52,16 +28,6 @@ yarn dev
 -   [ESlint](https://eslint.org/) & [Prettier](https://prettier.io/)
 
 ---
-
-<br />
-
-> [!TIP]
-> After cloning the repo you can delete all the previous text for a cleaner README.
-
-<br />
-
-This is a blank README file that you can customize at your needs.\
-Describe your project, how it works and how to contribute to it.
 
 <br />
 
@@ -153,51 +119,5 @@ yarn format
 
 Checks if your files are formatted. This command will output a human-friendly message and a list of unformatted files, if any.
 
-<br />
-
-# 🧬 Project structure
-
-This is the structure of the files in the project:
-
-```sh
-    │
-    ├── public                  # public files (favicon, .htaccess, manifest, ...)
-    ├── src                     # source files
-    │   ├── __tests__           # all test files
-    │   ├── components
-    │   ├── pages
-    │   ├── resources           # images, constants and other static resources
-    │   ├── store               # Redux store
-    │   │   ├── actions         # store's actions
-    │   │   └── reducers        # store's reducers
-    │   ├── styles
-    │   ├── types               # data interfaces
-    │   ├── utility             # utilities functions and custom components
-    │   ├── App.tsx
-    │   ├── index.tsx
-    │   ├── RootComponent.tsx   # React component with all the routes
-    │   ├── serviceWorker.ts
-    │   ├── setupTests.ts
-    │   └── vite-env.d.ts
-    ├── .env
-    ├── .eslintignore
-    ├── .eslintrc.js
-    ├── .gitignore
-    ├── .prettierrc
-    ├── index.html
-    ├── jest.config.cjs
-    ├── package.json
-    ├── README.md
-    ├── tsconfig.json
-    └── vite.config.json
-```
-
-# 📖 Learn More
-
-You can learn more in the [Vite documentation](https://vitejs.dev/guide/).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
 #
-
 <p align="center">Bootstrapped with Vite.</p>
