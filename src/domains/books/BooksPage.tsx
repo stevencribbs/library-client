@@ -1,5 +1,5 @@
 import React from 'react'
-import { AddBookForm } from './AddBookForm';
+import AddBookForm from './AddBookForm';
 import { fetchAllBooks, selectAllBooks, selectBooksStatus } from './booksSlice';
 import { useAppDispatch, useAppSelector } from '~/app/hooks';
 

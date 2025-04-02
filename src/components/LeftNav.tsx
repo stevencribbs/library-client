@@ -1,6 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ROUTES } from '../resources/routes-constants';
+import { Button } from '@mui/material';
 
 const LeftNav: React.FC = () => {
     const navigate = useNavigate();
@@ -9,19 +10,19 @@ const LeftNav: React.FC = () => {
         <nav style={{ width: '200px', backgroundColor: '#f4f4f4', padding: '20px', boxShadow: '2px 0 5px rgba(0,0,0,0.1)' }}>
             <ul style={{ listStyleType: 'none', padding: 0 }}>
                 <li>
-                    <button onClick={() => navigate(ROUTES.HOMEPAGE_ROUTE)} style={{ cursor: 'pointer', margin: '10px 0', width: '100%' }}>
+                    <Button variant="contained" fullWidth onClick={() => navigate(ROUTES.HOMEPAGE_ROUTE)} style={{ margin: '10px 0' }}>
                         Home
-                    </button>
+                    </Button>
                 </li>
                 <li>
-                    <button onClick={() => navigate(ROUTES.BOOKSPAGE_ROUTE)} style={{ cursor: 'pointer', margin: '10px 0', width: '100%' }}>
+                    <Button variant="contained" fullWidth onClick={() => navigate(ROUTES.BOOKSPAGE_ROUTE)} style={{ margin: '10px 0' }}>
                         Books
-                    </button>
+                    </Button>
                 </li>
                 <li>
-                    <button onClick={() => navigate(ROUTES.QUOTESPAGE_ROUTE)} style={{ cursor: 'pointer', margin: '10px 0', width: '100%' }}>
+                    <Button variant="contained" fullWidth onClick={() => navigate(ROUTES.QUOTESPAGE_ROUTE)} style={{ margin: '10px 0' }}>
                         Quotes
-                    </button>
+                    </Button>
                 </li>
             </ul>
         </nav>
