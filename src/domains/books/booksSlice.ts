@@ -31,18 +31,21 @@ const initialState: BooksState = {
     error: null,
 };
 
+export const addBook = createAppAsyncThunk<Book, Book>('books/addBook', async (book: Book): Promise<Book> => {
+    const response = await axios.post('http://localhost:3300/books', book);
+    return response.data;
+});
+export const fetchAllBooks = createAppAsyncThunk<Book[], void>('books/fetchAllBooks', async (): Promise<Book[]> => {
+    const response = await axios.get('http://localhost:3300/books');
+    console.log('Response:', response.data);
+    return response.data satisfies Book[];
+});
+
 // Create the slice and pass in the initial state
 const booksSlice = createSlice({
     name: 'books',
     initialState,
     reducers: {
-        // Declare a "case reducer" named `bookAdded`.
-        // The type of `action.payload` will be a `Book` object.
-        // bookAdded(state, action: PayloadAction<Book>) {
-        //     // "Mutate" the existing state array, which is
-        //     // safe to do here because `createSlice` uses Immer inside.
-        //     state.push(action.payload)
-        // }
         bookAdded: {
             reducer: (state, action: PayloadAction<Book>) => {
                 state.books.push(action.payload);
@@ -71,24 +74,22 @@ const booksSlice = createSlice({
             state.status = 'failed';
             state.error = action.error.message || null;
         });
+        // Handle addNewBook AsyncThunk
+        builder.addCase(addBook.pending, (state) => {
+            state.status = 'loading';
+        });
+        builder.addCase(addBook.fulfilled, (state, action) => {
+            state.status = 'complete';
+            state.books.push(action.payload);
+        });
+        builder.addCase(addBook.rejected, (state, action) => {
+            state.status = 'failed';
+            state.error = action.error.message || null;
+        });
     },
 });
 
-export const fetchAllBooks = createAppAsyncThunk<Book[], void>('books/fetchAllBooks', async (): Promise<Book[]> => {
-    const response = await axios.get('http://localhost:3300/books');
-    return response.data satisfies Book[];
-});
-// export const fetchAllBooks = createAppAsyncThunk<Book[], string, { dispatch: AppDispatch }>('books/fetchAllBooks', async (/*{ dispatch }*/) => {
-//     try {
-//         // eslint-disable-next-line @typescript-eslint/no-explicit-any
-//         const data: Book[] = await axios.get('http://localhost:3300/books').then((response) => response.data.results);
-//         // dispatch(setContents(data))
-//         return data;
-//     } catch (e) {
-//         console.error(e);
-//         throw e;
-//     }
-// });
+
 
 // Export the auto-generated action creator with the same name
 export const { bookAdded } = booksSlice.actions;

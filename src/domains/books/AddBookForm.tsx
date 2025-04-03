@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { TextField, Button, Box } from '@mui/material';
 import { Book } from './bookTypes';
-import { bookAdded } from './booksSlice';
-import { useDispatch } from 'react-redux';
+import { addBook } from './booksSlice';
+import { useAppDispatch } from '~/app/hooks';
 
 // TS types for the input fields
 // See: https://epicreact.dev/how-to-type-a-react-form-on-submit-handler/
@@ -23,7 +23,7 @@ function getRandomInt(min: number, max: number): number {
 
 const AddBookForm: React.FC = () => {
   const [showForm, setShowForm] = useState(false);
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   const handleSubmit = (e: React.FormEvent<AddBookFormElements>) => {
     // Prevent server submission
@@ -43,7 +43,7 @@ const AddBookForm: React.FC = () => {
       author,
       summary,
     };
-    dispatch(bookAdded(newBook));
+    dispatch(addBook(newBook));
 
     e.currentTarget.reset();
   };
