@@ -1,9 +1,26 @@
 import React from 'react'
 import AddQuoteForm from './AddQuoteForm';
-import { useAppSelector } from '~/app/hooks';
+import { useAppDispatch, useAppSelector } from '~/app/hooks';
+import { fetchAllQuotes } from './quoteReducers';
+// import { fetchAllQuotes } from './quoteActions';
 
 const QuotesPage: React.FC = () => {
-    const quotes = useAppSelector((state) => state.quotesData.quotes);
+    const dispatch = useAppDispatch();
+    const quotes = useAppSelector((state) => state.quotesData.quotesData.quotes);
+    const quotesStatus = useAppSelector((state) => state.quotesData.quotesData.status);
+    
+    React.useEffect(() => {
+        if (quotesStatus === 'idle') {
+            try{
+                console.log('Fetching quotes...');
+                dispatch(fetchAllQuotes())
+            } catch (e) {
+                console.error(e)
+            }
+        }
+
+    }, [quotesStatus, dispatch]);
+
     return (
         <div style={{ position: 'relative', width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}>
             <h1 style={{ fontSize: '4em' }}>Quotes</h1>

@@ -10,5 +10,6 @@ const prepareQuoteAdded = (quote: Quote) => {
         }
     }
 }
-export const setQuotes = createAction<Quote[]>('quotes/setQuotes')
-export const quoteAdded = createAction<typeof prepareQuoteAdded, string>('quotes/quoteAdded', prepareQuoteAdded)
+export const setQuotes = createAction<Quote[]>('quotes/setQuotes');
+export const quoteAdded = createAction<typeof prepareQuoteAdded, string>('quotes/quoteAdded', prepareQuoteAdded);
+export const fetchAllQuotes = createAction('quotes/fetchAllQuotes');
