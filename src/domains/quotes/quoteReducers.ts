@@ -1,15 +1,15 @@
 import { createReducer, PayloadAction } from '@reduxjs/toolkit'
-import { Quote } from './quoteTypes'
+import { NewQuote, Quote } from './quoteTypes';
 import { quoteAdded, setQuotes } from './quoteActions'
 import { createAppAsyncThunk } from '~/app/withTypes';
 import axios from 'axios';
 
 interface QuotesState {
-    quotesData: {
-        quotes: Quote[];
-        status: 'idle' | 'loading' | 'complete' | 'failed';
-        error: string | null;
-    };
+    // quotesData: {
+    quotes: Quote[];
+    status: 'idle' | 'loading' | 'complete' | 'failed';
+    error: string | null;
+    // };
 }
 
 // const initialState: Quotes = {
@@ -23,40 +23,54 @@ interface QuotesState {
 //     ],
 // };
 const initialState: QuotesState = {
-    quotesData: {
-        quotes: [],
-        status: 'idle',
-        error: null,
-    },
+    // quotesData: {
+    quotes: [],
+    status: 'idle',
+    error: null,
+    // },
 };
 
+export const addQuote = createAppAsyncThunk<Quote, NewQuote>('quotes/addQuote', async (quote: NewQuote): Promise<Quote> => {
+    const response = await axios.post('http://localhost:3300/quotes', quote);
+    return response.data;
+});
+
 export const fetchAllQuotes = createAppAsyncThunk<Quote[], void>('quotes/fetchAllQuotes', async (): Promise<Quote[]> => {
-    console.log('call server for quotes...');
     const response = await axios('http://localhost:3300/quotes');
     if (response.status != 200) {
         throw new Error('Network response was not ok');
     }
-    console.log('Quotes Response:', response.data);
     return response.data satisfies Quote[];
 });
 
 const quoteReducers = createReducer<QuotesState>(initialState, (builder) => {
     builder.addCase(setQuotes, (state, action: PayloadAction<Quote[]>) => {
-        state.quotesData.quotes = action.payload;
+        state.quotes = action.payload;
     });
     builder.addCase(quoteAdded, (state, action: PayloadAction<Quote>) => {
-        state.quotesData.quotes.push(action.payload);
+        state.quotes.push(action.payload);
     });
     builder.addCase(fetchAllQuotes.pending, (state) => {
-        state.quotesData.status = 'loading';
+        state.status = 'loading';
     });
     builder.addCase(fetchAllQuotes.fulfilled, (state, action: PayloadAction<Quote[]>) => {
-        state.quotesData.status = 'complete';
-        state.quotesData.quotes = action.payload;
+        state.status = 'complete';
+        state.quotes = action.payload;
     });
     builder.addCase(fetchAllQuotes.rejected, (state, action) => {
-        state.quotesData.status = 'failed';
-        state.quotesData.error = action.error.message || null;
+        state.status = 'failed';
+        state.error = action.error.message || null;
+    });
+    builder.addCase(addQuote.pending, (state) => {
+        state.status = 'loading';
+    });
+    builder.addCase(addQuote.fulfilled, (state, action: PayloadAction<Quote>) => {
+        state.status = 'complete';
+        state.quotes.push(action.payload);
+    });
+    builder.addCase(addQuote.rejected, (state, action) => {
+        state.status = 'failed';
+        state.error = action.error.message || null;
     });
 });
 

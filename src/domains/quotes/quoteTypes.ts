@@ -4,3 +4,5 @@ export type Quote = {
     author?: string
     tags?: string
 }
+
+export type NewQuote = Omit<Quote, 'id'>;

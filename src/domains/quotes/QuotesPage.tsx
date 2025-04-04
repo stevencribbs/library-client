@@ -6,8 +6,8 @@ import { fetchAllQuotes } from './quoteReducers';
 
 const QuotesPage: React.FC = () => {
     const dispatch = useAppDispatch();
-    const quotes = useAppSelector((state) => state.quotesData.quotesData.quotes);
-    const quotesStatus = useAppSelector((state) => state.quotesData.quotesData.status);
+    const quotes = useAppSelector((state) => state.quotesData.quotes);
+    const quotesStatus = useAppSelector((state) => state.quotesData.status);
     
     React.useEffect(() => {
         if (quotesStatus === 'idle') {
