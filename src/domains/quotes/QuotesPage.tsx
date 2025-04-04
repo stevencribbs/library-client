@@ -2,7 +2,6 @@ import React from 'react'
 import AddQuoteForm from './AddQuoteForm';
 import { useAppDispatch, useAppSelector } from '~/app/hooks';
 import { fetchAllQuotes } from './quoteReducers';
-// import { fetchAllQuotes } from './quoteActions';
 
 const QuotesPage: React.FC = () => {
     const dispatch = useAppDispatch();

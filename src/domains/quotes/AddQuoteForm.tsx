@@ -26,8 +26,6 @@ const AddQuoteForm: React.FC = () => {
     const author = elements.author?.value;
     const tags = elements.tags?.value;
 
-    console.log('Values: ', { quoteText, author, tags });
-
     const newQuote: NewQuote = {
       text: quoteText,
       author,

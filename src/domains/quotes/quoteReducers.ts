@@ -5,29 +5,15 @@ import { createAppAsyncThunk } from '~/app/withTypes';
 import axios from 'axios';
 
 interface QuotesState {
-    // quotesData: {
     quotes: Quote[];
     status: 'idle' | 'loading' | 'complete' | 'failed';
     error: string | null;
-    // };
 }
 
-// const initialState: Quotes = {
-//     quotes: [
-//         {
-//             id: 1,
-//             text: 'Beauty is in the eye of the beholder.',
-//             author: 'Margaret Wolfe Hungerford',
-//             tags: 'beauty',
-//         },
-//     ],
-// };
 const initialState: QuotesState = {
-    // quotesData: {
     quotes: [],
     status: 'idle',
     error: null,
-    // },
 };
 
 export const addQuote = createAppAsyncThunk<Quote, NewQuote>('quotes/addQuote', async (quote: NewQuote): Promise<Quote> => {

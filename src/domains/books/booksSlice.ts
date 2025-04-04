@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { Book } from './bookTypes';
+import { Book, NewBook } from './bookTypes';
 import { RootState } from '~/store/store';
 import axios from 'axios';
 import { createAppAsyncThunk } from '~/app/withTypes';
@@ -9,21 +9,6 @@ interface BooksState {
     status: 'idle' | 'loading' | 'complete' | 'failed';
     error: string | null;
 }
-// Create an initial state value for the reducer, with that type
-// const initialState: Book[] = [
-//     {
-//         id: 1,
-//         title: 'Piercing the Darkness',
-//         author: 'Frank Peretti',
-//         summary: 'This book is about spiritual warfare.'
-//     },
-//     {
-//         id: 2,
-//         title: 'The Hobbit',
-//         author: 'J.R.R. Tolkien',
-//         summary: 'This book is about a hobbit who goes on an adventure.'
-//     }
-// ]
 
 const initialState: BooksState = {
     books: [],
@@ -31,7 +16,7 @@ const initialState: BooksState = {
     error: null,
 };
 
-export const addBook = createAppAsyncThunk<Book, Book>('books/addBook', async (book: Book): Promise<Book> => {
+export const addBook = createAppAsyncThunk<Book, NewBook>('books/addBook', async (book: NewBook): Promise<Book> => {
     const response = await axios.post('http://localhost:3300/books', book);
     return response.data;
 });
@@ -88,8 +73,6 @@ const booksSlice = createSlice({
         });
     },
 });
-
-
 
 // Export the auto-generated action creator with the same name
 export const { bookAdded } = booksSlice.actions;
