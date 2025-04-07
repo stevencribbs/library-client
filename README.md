@@ -1,6 +1,10 @@
 <h1 align="center">Personal Library</h1>
 This project is centered around the conept of allowing a user to browse, add, and remove collected data such as quotes, verses, books, recipes, etc. It is designed to work as the client view for data retrieved from, and stored in, the library-server project.
 
+This is a playground project to work with Redux and various methods of implementing Redux state management. As such, I have left in multiple approaches for creating actions, reducers, and thunks.
+
+This project was bootstrapped with [Vite](https://vitejs.dev/).
+
 <br />
 
 # Start Up
@@ -19,13 +23,13 @@ yarn dev
 
 ## ⚗️ Initial Technologies list
 
--   [TypeScript](https://www.typescriptlang.org/)
--   [Sass](https://sass-lang.com/)
--   [Redux Toolkit](https://redux-toolkit.js.org/)
--   [Router](https://reactrouter.com/)
--   [Axios](https://axios-http.com/)
--   [Moment](https://momentjs.com/)
--   [ESlint](https://eslint.org/) & [Prettier](https://prettier.io/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Sass](https://sass-lang.com/)
+- [MUI](https://mui.com/)
+- [Redux Toolkit](https://redux-toolkit.js.org/)
+- [Router](https://reactrouter.com/)
+- [Axios](https://axios-http.com/)
+- [ESlint](https://eslint.org/) & [Prettier](https://prettier.io/)
 
 ---
 
@@ -120,4 +124,5 @@ yarn format
 Checks if your files are formatted. This command will output a human-friendly message and a list of unformatted files, if any.
 
 #
+
 <p align="center">Bootstrapped with Vite.</p>
