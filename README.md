@@ -1,5 +1,5 @@
 <h1 align="center">Personal Library</h1>
-This project is centered around the conept of allowing a user to browse, add, and remove collected data such as quotes, verses, books, recipes, etc. It is designed to work as the client view for data retrieved from, and stored in, the library-server project.
+This project is centered around the conept of allowing a user to browse, add, and remove collected data such as quotes, verses, books, recipes, etc. It is designed to work as the client view for data retrieved from, and stored in, the library-server project.<br /><br />
 
 This is a playground project to work with Redux and various methods of implementing Redux state management. As such, I have left in multiple approaches for creating actions, reducers, and thunks.
 
